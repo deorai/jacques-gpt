@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JacquesGPT Chatbot</title>
+</head>
+
+<body>
+
+    <h1>Welcome to JacquesGPT Chatbot</h1>
+
+    <div id="chat-box">
+        <!-- Chat messages will go here -->
+    </div>
+
+    <form id="chat-form">
+        <input type="text" id="user-input" placeholder="Type your message...">
+        <button type="submit">Send</button>
+    </form>
+
+    <!-- Link to your backend.js file -->
+    <script src="backend.mjs"></script>
+
+    <!-- Inline script to handle form submission and AJAX -->
+    <script>
+        const chatArray = []
+
+        document.getElementById('chat-form').addEventListener('submit', function (event) {
+            event.preventDefault();
+            const userInput = document.getElementById('user-input').value;
+
+            // Create a new XMLHttpRequest object
+            const xhr = new XMLHttpRequest();
+
+            // Configure the request
+            xhr.open('POST', 'http://localhost:4000/chat', true);
+            xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+
+            // Handle the response
+            xhr.onreadystatechange = function () {
+
+
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = JSON.parse(xhr.responseText);
+                    const chatBox = document.getElementById('chat-box');
+                    let iterationString = ''
+
+                    // chatArray.push(`<p>${userInput}</p>`)
+                    chatArray.push(`Thinking...</p>`); // Add the "thinking..." message
+
+
+                    chatArray.push(`<p>${response.message}</p>`)
+                    if (chatArray.length > 3) {
+                        chatArray.shift()
+                        chatArray.shift()
+                    }
+
+                    for (let i = 0; i < chatArray.join('').length; i++) {
+                        setTimeout(function () {
+                            iterationString += chatArray.join('')[i];
+                            chatBox.innerHTML = iterationString;
+
+                            if (i === chatArray.join('').length - 1) {
+                                chatBox.innerHTML = chatArray.join('');
+                            }
+                        }, i * 10);  // 100 milliseconds delay for each character
+                    }
+
+                    chatBox.innerHTML = chatArray.join('');
+                }
+            };
+
+            // Send the request
+            xhr.send(JSON.stringify({ message: userInput }));
+        });
+    </script>
+
+</body>
+
+</html>
