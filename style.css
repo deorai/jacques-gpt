@@ -1,11 +1,48 @@
 html {
     font-size: 16px;
-  }
-  #burger {
-  }
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    height: fit-content;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+
+#bjuurger {}
 
 #avatar-head {
     display: block;
+    margin:auto;
+    height: 50%;
+    width: 50%;
+}
 
-    width: 30%;
+#chat-box {
+
+justify-content: center;
+    margin: auto;
+}
+#chat-form {
+    display: flex;
+    position: fixed;
+    bottom: 1;
+    position: fixed;
+    bottom: 0;
+  }
+
+input {
+    width: 100%;
+    color: red;
+    margin: auto;
+    
 }
