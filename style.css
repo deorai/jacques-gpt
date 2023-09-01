@@ -1,0 +1,11 @@
+html {
+    font-size: 16px;
+  }
+  #burger {
+  }
+
+#avatar-head {
+    display: block;
+
+    width: 30%;
+}
