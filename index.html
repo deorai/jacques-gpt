@@ -7,6 +7,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon:ital@0;1&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
     <title>JacquesGPT</title>
 </head>
 
@@ -21,8 +23,9 @@
                 d="M12.6044 11.1379H33.8791M12.6044 20.7931H33.8791M12.6044 30.4483H33.8791M7.28571 43H38.7143C42.1858 43 45 40.1902 45 36.7241V7.27586C45 3.8098 42.1858 1 38.7143 1H7.28571C3.81421 1 1 3.8098 1 7.27586V36.7241C1 40.1902 3.81421 43 7.28571 43Z"
                 stroke="black" stroke-width="1.5" stroke-linecap="round" />
         </svg>
+     
     </header>
-
+    <h2>la voix de la sophistication</h2>
 
 
 
@@ -439,6 +442,7 @@ z" />
 
     <!-- Chat bot reply space -->
     <div id="chat-box">
+  
 
     </div>
 
@@ -463,6 +467,7 @@ z" />
         document.getElementById('chat-form').addEventListener('submit', function (event) {
             event.preventDefault();
             const userInput = document.getElementById('user-input').value;
+            document.getElementById('user-input').value = '';
 
             // Create a new XMLHttpRequest object
             const xhr = new XMLHttpRequest();
@@ -477,10 +482,12 @@ z" />
 
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     const response = JSON.parse(xhr.responseText);
+                    const formattedResponse = response.message.replace(/\n/g, '<br>');
+
                     const chatBox = document.getElementById('chat-box');
                     let iterationString = ''
-                    chatArray.push(`<p>${response.message}</p>`)
-                    if (chatArray.length > 3) {
+                    chatArray.push(`<span>${formattedResponse}</span>`)
+                    if (chatArray.length > 2) {
                         chatArray.shift()
                         chatArray.shift()
                     }
@@ -495,17 +502,22 @@ z" />
                             }
                         }, i * 10);  // 100 milliseconds delay for each character
                     }
+                    console.log("Formatted Text:", response);
 
                     chatBox.innerHTML = chatArray.join('');
+                    document.getElementById('user-input').disabled = false;
+
                 }
             };
 
+            document.getElementById('user-input').disabled = true;
             // Send the request
             xhr.send(JSON.stringify({ message: userInput }));
+
+            
         });
+
     </script>
-
-
 
 </body>
 

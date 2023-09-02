@@ -40,8 +40,9 @@ app.post('/chat', async (req, res) => {
 
     const completion = await openai.chat.completions.create({
       messages: [
-        { role: 'system',  content: "You are a sophisticated french man  called Jacques who only  speaks french. You speak with a refined language. set and generally tend towards sophisticated matters"
-      },
+        {
+          role: 'system', content: "You are a sophisticated french man  called Jacques who only  speaks french. You speak with a refined language. set and generally tend towards sophisticated matters."
+        },
         ...messageHistory
       ],
       model: 'gpt-4',
