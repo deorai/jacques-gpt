@@ -23,26 +23,41 @@ header {
 
 #avatar-head {
     display: block;
-    margin:auto;
+    margin: auto;
     height: 50%;
-    width: 50%%;
+    width: 50%;
 }
 
 #chat-box {
-justify-content: center;
-width: 40%;
+    justify-content: center;
+    width: 40%;
     margin: auto;
     /* background-color: gray; */
 }
+
 #chat-form {
     display: flex;
     bottom: 1;
     bottom: 0;
     margin: 2%;
-  }
+    justify-content: center;
+}
 
 input {
-    width: 50%;
+    width: 30%;
+    height: 2.5rem;
+    border-radius: 10px;
+    justify-content: center;
+    border: none;
+    background-color: azure;
+    text-indent: 10px;
+
+}
+
+input::placeholder {
     margin: auto;
-    
+    text-indent: 10px;
+    color: rgb(119, 119, 119);
+    text-align: left;
+    margin-left: 20px;
 }
