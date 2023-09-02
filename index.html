@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="style.css">
-
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon:ital@0;1&display=swap" rel="stylesheet">
     <title>JacquesGPT</title>
 </head>
 
@@ -441,13 +443,15 @@ z" />
     </div>
 
     <form id="chat-form">
-        <input type="text" id="user-input" placeholder="parle-moi...........">
+        <input type="text" id="user-input" focus autofocus placeholder="parle-moi...........">
         <button type="submit"><svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
          <g id="travel-map-navigation-arrow--compass-arrow-map-bearing-navigation-maps-heading-gps">
          <path id="Vector" d="M9.52121 12.6845L12.4562 20.4194C12.7425 21.174 13.7557 21.2938 14.1941 20.6162C18.0175 14.7064 20.869 8.24049 20.6869 2.41086C20.6716 1.92285 20.2828 1.53402 19.7948 1.51873C13.9654 1.33616 7.49943 4.18796 1.58978 8.01133C0.91219 8.44971 1.03201 9.46286 1.78654 9.7492L9.52121 12.6845Z" fill="white" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
          </g>
          </svg>
          </button>
+
+      
     </form>
 
     <!-- Link to backend.js file -->
@@ -476,11 +480,6 @@ z" />
                     const response = JSON.parse(xhr.responseText);
                     const chatBox = document.getElementById('chat-box');
                     let iterationString = ''
-
-                    // chatArray.push(`<p>${userInput}</p>`)
-                    chatArray.push(`Thinking...</p>`); // Add the "thinking..." message
-
-
                     chatArray.push(`<p>${response.message}</p>`)
                     if (chatArray.length > 3) {
                         chatArray.shift()
