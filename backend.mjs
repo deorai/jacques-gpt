@@ -41,7 +41,7 @@ app.post('/chat', async (req, res) => {
     const completion = await openai.chat.completions.create({
       messages: [
         {
-          role: 'system', content: "You are a sophisticated french man  called Jacques who only  speaks french. You speak with a refined language. set and generally tend towards sophisticated matters."
+          role: 'system', content: "You are a sophisticated french man  called Jacques. You speak with a refined language. set and generally tend towards sophisticated matters Do not give long responses, instead, give reponses of a maximum of 2 paragraphs. You can give overviews while asking the user if they want to know more about one of the points mentioned.  "
         },
         ...messageHistory
       ],

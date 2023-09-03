@@ -461,7 +461,6 @@ z" />
 
    <!-- Inline script to handle form submission and AJAX -->
    <script>
-      const chatArray = []
 
       document.getElementById('chat-form').addEventListener('submit', function (event) {
          event.preventDefault();
@@ -477,27 +476,26 @@ z" />
 
          // Handle the response
          xhr.onreadystatechange = function () {
-
             if (xhr.readyState === 4 && xhr.status === 200) {
+               // create variable of the parsed data
                const response = JSON.parse(xhr.responseText);
+               // Ensure carriage returns rendered
                const formattedResponse = response.message.replace(/\n/g, '<br>');
-
+               // declare variable to targetthe response box
                const chatBox = document.getElementById('chat-box');
-               let iterationString = ''
-               chatArray.push(`<span>${formattedResponse}</span>`)
-               if (chatArray.length > 2) {
-                  chatArray.shift()
-                  chatArray.shift()
-               }
+               // create string to be  iteration
 
+               let iterationString = ''
+
+               console.log(formattedResponse)
                // timeout of 100ms to create iteration of the response 
-               for (let i = 0; i < chatArray.join('').length; i++) {
+               for (let i = 0; i < formattedResponse.length; i++) {
                   setTimeout(function () {
-                     iterationString += chatArray.join('')[i];
+                     iterationString += formattedResponse[i];
                      chatBox.innerHTML = iterationString;
 
-                     if (i === chatArray.join('').length - 1) {
-                        chatBox.innerHTML = chatArray.join('');
+                     if (i === formattedResponse.length - 1) {
+                        chatBox.innerHTML = formattedResponse;
 
                      }
                   }, i * 10);
@@ -517,7 +515,7 @@ z" />
                }
                console.log("Formatted Text:", response);
 
-               chatBox.innerHTML = chatArray.join('');
+               chatBox.innerHTML = formattedResponse;
             }
          };
 
@@ -540,5 +538,3 @@ z" />
 </body>
 
 </html>
-
-
