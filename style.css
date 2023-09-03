@@ -36,6 +36,19 @@ header {
     height: 29rem;
 }
 
+@keyframes shimmer {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+  }
+  
+  #avatar-head.shimmering {
+    animation: shimmer 5s infinite ease-in-out;
+  }
+
+
+
+  
 #chat-box {
     justify-content: center;
 font-size: 1.3rem;

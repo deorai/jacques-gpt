@@ -26,9 +26,6 @@
 
    </header>
    <h2>la voix de la sophistication</h2>
-
-
-
    <!-- avatar image -->
    <svg version="1.1" id="avatar-head" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
       x="0px" y="0px" width="100%" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve">
@@ -445,7 +442,7 @@ z" />
 
 
    </div>
-   
+
    <form id="chat-form">
       <input type="text" id="user-input" focus autofocus placeholder="parle-moi...........">
       <button type="submit"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"
@@ -513,6 +510,9 @@ z" />
                   //update input box placeholder after response rendering
 
                   document.getElementById('user-input').placeholder = 'Demandez-moi quelque chose d\'intéressant';
+                  // Stop avatar shimmering
+                  document.getElementById('avatar-head').classList.remove('shimmering');
+
 
                }
                console.log("Formatted Text:", response);
@@ -520,12 +520,17 @@ z" />
                chatBox.innerHTML = chatArray.join('');
             }
          };
+
+
          // disable user input while response rendering
          document.getElementById('user-input').disabled = true;
          //change input box background color grey while response rendering
          document.getElementById('user-input').style.backgroundColor = "#EFEFEF";
          //change placeholder text while response rendering
          document.getElementById('user-input').placeholder = 'En cours de réflexion...';
+         // start avatart shimmering 
+         document.getElementById('avatar-head').classList.add('shimmering');
+
          // Send the request
          xhr.send(JSON.stringify({ message: userInput }));
       });
@@ -535,3 +540,5 @@ z" />
 </body>
 
 </html>
+
+
