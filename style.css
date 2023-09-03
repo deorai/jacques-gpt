@@ -31,7 +31,8 @@ header {
 #avatar-head {
     display: block;
     margin: auto;
-
+    /* height: 50%;
+    width: 50%; */
     height: 29rem;
 }
 
@@ -60,7 +61,7 @@ input {
     border-radius: 10px;
     justify-content: center;
     border: none;
-    background-color: azure;
+    background-color: rgb(255, 255, 255);
     text-indent: 10px;
 
     bottom: 2%;
