@@ -25,6 +25,7 @@
       </svg>
 
    </header>
+   <!--Tagline -->
    <h2>la voix de la sophistication</h2>
    <!-- avatar image -->
    <svg version="1.1" id="avatar-head" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -461,6 +462,7 @@ z" />
    <!-- Inline script to handle form submission and AJAX -->
    <script>
 
+      // delete input from user after submitting. 
       document.getElementById('chat-form').addEventListener('submit', function (event) {
          event.preventDefault();
          const userInput = document.getElementById('user-input').value;
@@ -480,10 +482,10 @@ z" />
                const response = JSON.parse(xhr.responseText);
                // Ensure carriage returns rendered
                const formattedResponse = response.message.replace(/\n/g, '<br>');
-               // declare variable to targetthe response box
+               // declare variable to target the response box
                const chatBox = document.getElementById('chat-box');
-               // create string to be  iteration
 
+               // create string to be iterated letter by letter
                let iterationString = ''
 
                console.log(formattedResponse)
@@ -492,10 +494,8 @@ z" />
                   setTimeout(function () {
                      iterationString += formattedResponse[i];
                      chatBox.innerHTML = iterationString;
-
                      if (i === formattedResponse.length - 1) {
                         chatBox.innerHTML = formattedResponse;
-
                      }
                   }, i * 10);
 
@@ -509,11 +509,8 @@ z" />
                   document.getElementById('user-input').placeholder = 'Demandez-moi quelque chose d\'intéressant';
                   // Stop avatar shimmering
                   document.getElementById('avatar-head').classList.remove('shimmering');
-
-
                }
-               console.log("Formatted Text:", response);
-
+               // assign formattedResponse response to innerHTML 
                chatBox.innerHTML = formattedResponse;
             }
          };
@@ -525,7 +522,7 @@ z" />
          document.getElementById('user-input').style.backgroundColor = "#EFEFEF";
          //change placeholder text while response rendering
          document.getElementById('user-input').placeholder = 'En cours de réflexion...';
-         // start avatart shimmering 
+         // start avatar shimmering 
          document.getElementById('avatar-head').classList.add('shimmering');
 
          // Send the request
