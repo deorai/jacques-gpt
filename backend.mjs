@@ -14,8 +14,8 @@ const app = express();
 
 
 app.use(session({
-  secret: '37bff44e02b060b05eafa991ed802dc3bc54b8153337cee3f7d03f4cc166b342b63f90e46dec68c7d13fff8a5a135f7ca36d2606c7b2ade450d7c9d5371173fc',
-  resave: false,
+  secret: process.env.SESSION_SECRET,
+
   saveUninitialized: true,
   cookie: { secure: false }
 }));
@@ -36,10 +36,14 @@ app.use(function (req, res, next) {
 });
 
 // Create an array to store message history
-const messageHistory = [];
+// const req.session.messageHistory = [];
 
 // POST endpoint for chat
 app.post('/chat', async (req, res) => {
+  if (!req.session.req.session.messageHistory) {
+    req.session.req.session.messageHistory = [];
+  }
+  
   const userInput = req.body.message;
 
   try {
@@ -49,7 +53,7 @@ app.post('/chat', async (req, res) => {
     });
 
     // Add user message to message history
-    messageHistory.push({ role: 'user', content: userInput });
+    req.session.messageHistory.push({ role: 'user', content: userInput });
 
     // Generate GPT-4 response
     const completion = await openai.chat.completions.create({
@@ -58,7 +62,7 @@ app.post('/chat', async (req, res) => {
           role: 'system',
           content: "You are a sophisticated french man called Jacques. You speak with a refined language. set and generally tend towards sophisticated matters. Do not give long responses, instead, give reponses of a maximum of 2 paragraphs. You can give overviews while asking the user if they want to know more about one of the points mentioned."
         },
-        ...messageHistory
+        ...req.session.messageHistory
       ],
       model: 'gpt-4',
     });
@@ -68,7 +72,7 @@ app.post('/chat', async (req, res) => {
     res.json({ message: response });
 
     // Add GPT-4's response to message history
-    messageHistory.push({ role: 'assistant', content: response });
+    req.session.messageHistory.push({ role: 'assistant', content: response });
 
   } catch (error) {
     console.error('Error:', error.message);
