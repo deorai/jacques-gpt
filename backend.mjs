@@ -1,13 +1,24 @@
 // Import required modules
+
 import express from 'express';
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
+import session from 'express-session';
+
 
 // Load environment variables
 dotenv.config();
 
 // Initialize Express app
 const app = express();
+
+
+app.use(session({
+  secret: '37bff44e02b060b05eafa991ed802dc3bc54b8153337cee3f7d03f4cc166b342b63f90e46dec68c7d13fff8a5a135f7ca36d2606c7b2ade450d7c9d5371173fc',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}));
 
 // Middleware for JSON parsing
 app.use(express.json());
