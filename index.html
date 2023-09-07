@@ -8,11 +8,20 @@
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon:ital@0;1&display=swap" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+   <!-- Recaptcha -->
+   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
 
    <title>JacquesGPT</title>
 </head>
+<div class="g-recaptcha" data-sitekey="6Lf5TQAoAAAAADgeHlrdrvfpaoDCij16tEj6Y-up" data-callback="onSubmit"></div>
+
+
+
+
 
 <body>
 
@@ -552,6 +561,14 @@ z" />
 
    </script>
 
+   <!-- Modal overlay -->
+   <div id="captchaModal"
+      style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 9999;">
+      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+         <div class="g-recaptcha" data-sitekey="6Lf5TQAoAAAAADgeHlrdrvfpaoDCij16tEj6Y-up" data-callback="onSubmit">
+         </div>
+
 </body>
+</div>
 
 </html>
