@@ -9,7 +9,7 @@
    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon:ital@0;1&display=swap" rel="stylesheet">
    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
-   
+
 
    <title>JacquesGPT</title>
 </head>
@@ -471,10 +471,15 @@ z" />
    <!-- Inline script to handle form submission and AJAX -->
    <script>
 
+      // message history variable
+      let messageHistory = [];
+
       // delete input from user after submitting. 
       document.getElementById('chat-form').addEventListener('submit', function (event) {
          event.preventDefault();
          const userInput = document.getElementById('user-input').value;
+         messageHistory.push({ role: 'user', content: userInput });
+
          document.getElementById('user-input').value = '';
 
          // Create a new XMLHttpRequest object
@@ -491,6 +496,10 @@ z" />
                const response = JSON.parse(xhr.responseText);
                // Ensure carriage returns rendered
                const formattedResponse = response.message.replace(/\n/g, '<br>');
+
+               // push bot response to message history
+               messageHistory.push({ role: 'assistant', content: formattedResponse });
+
                // declare variable to target the response box
                const chatBox = document.getElementById('chat-box');
 
@@ -534,8 +543,9 @@ z" />
          // start avatar shimmering 
          document.getElementById('avatar-head').classList.add('shimmering');
 
-         // Send the request
-         xhr.send(JSON.stringify({ message: userInput }));
+         // Send userinput and history to server
+         xhr.send(JSON.stringify({ message: userInput, history: messageHistory }));
+
       });
 
    </script>

@@ -23,12 +23,12 @@ app.use((req, res, next) => {
   next();
 });
 
-const messageHistory = [];
 
 // POST endpoint for chat
 app.post('/chat', async (req, res) => {
   const userInput = req.body.message;
-  messageHistory.push({ role: 'user', content: userInput });
+  const clientHistory = req.body.history;
+
 
   try {
     const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
@@ -39,13 +39,12 @@ app.post('/chat', async (req, res) => {
           role: 'system',
           content: "You are a sophisticated french man called Jacques. You speak with a refined language."
         },
-        ...messageHistory
+        ...clientHistory
       ],
       model: 'gpt-4',
     });
 
     const response = completion.choices[0].message.content;
-    messageHistory.push({ role: 'assistant', content: response });
     res.json({ message: response });
 
   } catch (error) {
