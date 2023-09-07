@@ -16,13 +16,6 @@
 
 <body>
 
-   <!-- <form action="?" method="POST">
-      <div class="g-recaptcha" data-sitekey="6Lf5TQAoAAAAADgeHlrdrvfpaoDCij16tEj6Y-up
-      "></div>
-      <br/>
-      <input type="submit" value="Submit">
-    </form> -->
-
    <header>
       <!-- logo -->
       <h1>JacquesGPT</h1>
@@ -500,13 +493,21 @@ z" />
                // push bot response to message history
                messageHistory.push({ role: 'assistant', content: formattedResponse });
 
+               // remove first message if length of array is more than 20
+               // Added console log ensure this occurs
+
+               if (messageHistory.length > 10) {
+                  console.log("Before shift: ", messageHistory.length);
+                  messageHistory.shift();
+                  console.log("After shift: ", messageHistory.length);
+               }
+
                // declare variable to target the response box
                const chatBox = document.getElementById('chat-box');
 
                // create string to be iterated letter by letter
                let iterationString = ''
 
-               console.log(formattedResponse)
                // timeout of 100ms to create iteration of the response 
                for (let i = 0; i < formattedResponse.length; i++) {
                   setTimeout(function () {
@@ -528,6 +529,7 @@ z" />
                   // Stop avatar shimmering
                   document.getElementById('avatar-head').classList.remove('shimmering');
                }
+
                // assign formattedResponse response to innerHTML 
                chatBox.innerHTML = formattedResponse;
             }
