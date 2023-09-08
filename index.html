@@ -4,38 +4,37 @@
 <head>
    <meta charset="UTF-8">
    <link rel="stylesheet" type="text/css" href="style.css">
+
+   <!-- Preconnect to Google Fonts to improve performance -->
    <link rel="preconnect" href="https://fonts.googleapis.com">
    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+   <!-- Load custom IM Fell French Canon font -->
    <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon:ital@0;1&display=swap" rel="stylesheet">
-   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+   <!-- Async load reCAPTCHA API script -->
    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-   <!-- Recaptcha -->
-   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
-
 
    <title>JacquesGPT</title>
 </head>
-<div class="g-recaptcha" data-sitekey="6Lf5TQAoAAAAADgeHlrdrvfpaoDCij16tEj6Y-up" data-callback="onSubmit"></div>
-
-
-
-
 
 <body>
 
+   <!-- Overlay to block interaction during captcha -->
+   <div class="overlay"></div>
+
    <header>
-      <!-- logo -->
+      <!-- Page title -->
       <h1>JacquesGPT</h1>
+
       <!-- hamburger -->
       <svg width="46" height="44" viewBox="0 0 46 44" fill="none" xmlns="http://www.w3.org/2000/svg">
          <path id="Vector"
             d="M12.6044 11.1379H33.8791M12.6044 20.7931H33.8791M12.6044 30.4483H33.8791M7.28571 43H38.7143C42.1858 43 45 40.1902 45 36.7241V7.27586C45 3.8098 42.1858 1 38.7143 1H7.28571C3.81421 1 1 3.8098 1 7.27586V36.7241C1 40.1902 3.81421 43 7.28571 43Z"
             stroke="black" stroke-width="1.5" stroke-linecap="round" />
       </svg>
-
    </header>
+
    <!--Tagline -->
    <h2 id="tag-line">la voix de la sophistication</h2>
    <!-- avatar image -->
@@ -449,13 +448,16 @@ M281.983948,755.791443
 z" />
    </svg>
 
-   <!-- Chat bot reply space -->
-   <div id="chat-box">
+   <!-- Chat bot response container -->
+   <div id="chat-box"></div>
 
-   </div>
-
+   <!-- Form to submit user input -->
    <form id="chat-form">
-      <input type="text" id="user-input" focus autofocus placeholder="parle-moi...........">
+
+      <!-- Text input for user to type message -->
+      <input type="text" id="user-input" placeholder="parle-moi...........">
+
+      <!-- Send message button -->
       <button id="send-prompt-button" type="submit"><svg width="22" height="22" viewBox="0 0 22 22" fill="none"
             xmlns="http://www.w3.org/2000/svg">
             <g id="travel-map-navigation-arrow--compass-arrow-map-bearing-navigation-maps-heading-gps">
@@ -467,75 +469,85 @@ z" />
       </button>
    </form>
 
-   <!-- Link to backend.js file -->
+   <!-- Import backend code -->
    <script src="backend.mjs"></script>
 
-   <!-- Inline script to handle form submission and AJAX -->
+   <!-- Script to handle form submit and API call -->
    <script>
 
-      // message history variable
+      // Track message history
       let messageHistory = [];
 
-      // delete input from user after submitting. 
+      // Event listener for form submit
       document.getElementById('chat-form').addEventListener('submit', function (event) {
+
+         // Prevent default form submit
          event.preventDefault();
+
+         // Get user input
          const userInput = document.getElementById('user-input').value;
+
+         // Add user message to history  
          messageHistory.push({ role: 'user', content: userInput });
 
+         // Clear input
          document.getElementById('user-input').value = '';
 
-         // Create a new XMLHttpRequest object
+         // Create XMLHttpRequest object
          const xhr = new XMLHttpRequest();
 
-         // Configure the request
+         // Open connection and define request properties
          xhr.open('POST', 'http://localhost:4000/chat', true);
+
+         // Set JSON request header
          xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
 
-         // Handle the response
+         // Handle state changes 
          xhr.onreadystatechange = function () {
+
+            // Process response if request is done
             if (xhr.readyState === 4 && xhr.status === 200) {
-               // create variable of the parsed data
+
+               // Parse JSON response 
                const response = JSON.parse(xhr.responseText);
-               // Ensure carriage returns rendered
+
+               // Format response for display
                const formattedResponse = response.message.replace(/\n/g, '<br>');
 
-               // push bot response to message history
+               // Add response to history   
                messageHistory.push({ role: 'assistant', content: formattedResponse });
 
-               // remove first message if length of array is more than 20
-               // Added console log ensure this occurs
-
+               // Limit history length
                if (messageHistory.length > 10) {
                   console.log("Before shift: ", messageHistory.length);
                   messageHistory.shift();
                   console.log("After shift: ", messageHistory.length);
                }
 
-               // declare variable to target the response box
+               // Get chat box element
                const chatBox = document.getElementById('chat-box');
 
-               // create string to be iterated letter by letter
+               // Iterate through response 
                let iterationString = ''
 
-               // timeout of 100ms to create iteration of the response 
+               // Incrementally append each character
                for (let i = 0; i < formattedResponse.length; i++) {
                   setTimeout(function () {
                      iterationString += formattedResponse[i];
                      chatBox.innerHTML = iterationString;
+
+                     // Display full response after loop  
                      if (i === formattedResponse.length - 1) {
                         chatBox.innerHTML = formattedResponse;
                      }
-                  }, i * 10);
+                  }, i * 10); // 10ms timeout between each append
 
-                  // enable user input after response rendering
+                  // Re-enable input, reset styles after response 
                   document.getElementById('user-input').disabled = false;
-
-                  // set input box to white after response rendering
                   document.getElementById('user-input').style.backgroundColor = "white";
-                  //update input box placeholder after response rendering
-
                   document.getElementById('user-input').placeholder = 'Demandez-moi quelque chose d\'intéressant';
-                  // Stop avatar shimmering
+
+                  // Stop avatar animation
                   document.getElementById('avatar-head').classList.remove('shimmering');
                }
 
@@ -545,30 +557,72 @@ z" />
          };
 
 
-         // disable user input while response rendering
+         // Disable input during request
          document.getElementById('user-input').disabled = true;
-         //change input box background color grey while response rendering
+
+         // Visual updates to show "thinking"
          document.getElementById('user-input').style.backgroundColor = "#EFEFEF";
-         //change placeholder text while response rendering
          document.getElementById('user-input').placeholder = 'En cours de réflexion...';
-         // start avatar shimmering 
          document.getElementById('avatar-head').classList.add('shimmering');
 
-         // Send userinput and history to server
+         // Send data to API
          xhr.send(JSON.stringify({ message: userInput, history: messageHistory }));
 
       });
 
    </script>
 
-   <!-- Modal overlay -->
-   <div id="captchaModal"
-      style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); z-index: 9999;">
-      <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-         <div class="g-recaptcha" data-sitekey="6Lf5TQAoAAAAADgeHlrdrvfpaoDCij16tEj6Y-up" data-callback="onSubmit">
-         </div>
+
+
+   <!--  reCAPTCHA submit handler -->
+   <script>
+      function onSubmit(token) {
+
+         // Get reCAPTCHA response token
+         const captchaResponse = grecaptcha.getResponse();
+
+         // Send token to API for verification
+         fetch('http://localhost:4000/validate-captcha', {
+            method: 'POST',
+            headers: {
+               'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ captchaResponse: captchaResponse }),
+         })
+            .then(response => response.json())
+            .then(data => {
+
+               // Handle verification response
+               if (data.success) {
+
+                  // On success, hide captcha and overlay
+                  alert('Welcome to JacquesGPT.');
+                  document.getElementById('reCapatura').style.display = 'none';
+                  document.querySelector('.overlay').style.display = 'none';
+               } else {
+
+                  // On failure, show error
+                  alert('Captcha verification failed. Please try again.');
+               }
+            })
+
+            .catch((error) => {
+
+               // Log any errors
+               console.error('Error:', error);
+            });
+      }
+   </script>
+
+   <!-- reCAPTCHA form -->
+
+   <form id="reCapatura" action="?" method="POST">
+
+      <!-- Render reCAPTCHA widget -->
+      <div class="g-recaptcha" data-sitekey="6Legtw0oAAAAAEguF6dvTjmpTcXuGxlinHUQh5h3" data-callback="onSubmit"></div>
+      <br />
+   </form>
 
 </body>
-</div>
 
 </html>

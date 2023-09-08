@@ -2,7 +2,6 @@
     box-sizing: border-box;
 }
 
-
 html {
     font-size: 16px;
     height: 100%;
@@ -24,15 +23,33 @@ header {
     margin: 0 2%;
 }
 
+/* Captcha form */
+#reCapatura {
+    position: fixed;
+    top: 50%;
+    right: 41%;
+    z-index: 2;
+}
+
+
+
+/* Create a full-screen overlay for reCaptcha  */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+}
+
 #tag-line {
     display: block;
     margin: 0 10px;
     font-style: italic;
 }
-
-
-
-#bjuurger {}
 
 #avatar-head {
     display: block;
@@ -61,7 +78,7 @@ header {
 #avatar-head.shimmering {
     animation: shimmer 5s infinite ease-in-out;
 }
- 
+
 /* Ai response container */
 #chat-box {
     justify-content: center;
@@ -119,5 +136,3 @@ input::placeholder {
 #send-prompt-button:active {
     border: 2px solid rgb(0, 163, 41);
 }
-
-
