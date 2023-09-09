@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="style.css">
+
+        <!-- Preconnect to Google Fonts to improve performance -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+        <!-- Load custom IM Fell French Canon font -->
+        <link href="https://fonts.googleapis.com/css2?family=IM+Fell+French+Canon:ital@0;1&display=swap"
+            rel="stylesheet">
+
+        <!-- Async load reCAPTCHA API script -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+        <title>JacquesGPT</title>
+    </head>
+</head>
+
+<body>
+
+    <header>
+        <!-- Page title -->
+        <h1>JacquesGPT</h1>
+
+        <!-- hamburger -->
+        <nav>
+            <svg id='burger-menu' width="46" height="44" viewBox="0 0 46 44" fill="none"
+                xmlns="http://www.w3.org/2000/svg">
+                <path id="Vector"
+                    d="M12.6044 11.1379H33.8791M12.6044 20.7931H33.8791M12.6044 30.4483H33.8791M7.28571 43H38.7143C42.1858 43 45 40.1902 45 36.7241V7.27586C45 3.8098 42.1858 1 38.7143 1H7.28571C3.81421 1 1 3.8098 1 7.27586V36.7241C1 40.1902 3.81421 43 7.28571 43Z"
+                    stroke="black" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+
+            <div id="dropdown-menu" class="hidden">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="https://github.com/deorai/jacques-gpt">Github</a>
+            </div>
+        </nav>
+
+    </header>
+
+    <main>
+        <section id="about-section">
+            <h1 id="about-heading">About JacquesGPT</h1>
+            <p id="about-text">Welcome to JacquesGPT, your refined companion for delving into the richness of French culture, history,
+                and philosophy. Unlike conventional chatbots, JacquesGPT specializes in the 'finer things in life,'
+                providing you with conversational insights into the elegance of France. <br>  <br>Whether you're curious about the
+                tumultuous events of 18th-century France, pondering the ideas of its greatest philosophers, or keen to
+                discuss modern French lifestyle, JacquesGPT is here to indulge you. Pose your questions and immerse
+                yourself in a world of sophistication à la française</p>
+        </section>
+    </main>
+
+    <footer>
+        <p> 2023 JacquesGPT. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // burger menu reavel on click
+        document.querySelector('svg').addEventListener('click', function () {
+            const menu = document.getElementById('dropdown-menu');
+            const burger = this;  // the clicked SVG element
+
+            burger.classList.toggle('active');
+            menu.classList.toggle('hidden');
+            event.stopPropagation(); // Stop event from bubbling up
+        });
+
+        document.addEventListener('click', function () {
+            const menu = document.getElementById('dropdown-menu');
+            const burger = document.querySelector('svg');
+
+            if (!menu.classList.contains('hidden')) {
+                menu.classList.add('hidden');
+                burger.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

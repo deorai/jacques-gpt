@@ -35,7 +35,7 @@ header {
 
 /* Create a full-screen overlay for reCaptcha  */
 
-.overlay {
+/* .overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -43,7 +43,7 @@ header {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 1;
-}
+} */
 
 #tag-line {
     display: block;
@@ -180,4 +180,21 @@ input::placeholder {
 
 #send-prompt-button:active {
     border: 2px solid rgb(0, 163, 41);
+}
+
+/* About section */
+
+#about-section {
+    margin: auto;
+    width: 60%;
+    font-size: 20px;
+    padding: 160px;
+    line-height: 1.5;
+}
+
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
