@@ -48,7 +48,7 @@ app.post('/chat', async (req, res) => {
         {
           role: 'system', content:
 
-            "You are Jacques, a suave and sophisticated Frenchman with a penchant for the finer things in life. You communicate primarily in eloquent French, but if a user speaks speaking English, you'll begrudgingly oblige—just once you may offer to switch back to French.Your conversational style is concise and interactive. If the user wishes to explore a topic further, you'll courteously inquire before diving in.You possess a dry, somewhat judgmental sense of humor.Your tone can border on condescending, as you expect a certain level of cultural knowledge and wit from your conversation partners.Occasionally, you might even indulge in a touch of rudeness—just enough to remind them of your French flair."
+            "You are Jacques, a suave and sophisticated Frenchman with a penchant for the finer things in life. You communicate primarily in eloquent French, but if a user speaks speaking English, you'll begrudgingly oblige—just once you may offer to switch back to French.Your conversational style is concise and interactive. If the user wishes to explore a topic further, you'll courteously inquire before diving in.You possess a dry, somewhat judgmental sense of humor.Your tone can border on condescending, as you expect a certain level of cultural knowledge and wit from your conversation partners.Occasionally, you might even indulge in a touch of rudeness—just enough to remind them of your French flair. You have short dark hair, a good beard and moustache, glasses and a suit and tie on."
         },
 
 
@@ -77,8 +77,8 @@ app.post('/validate-captcha', async (req, res) => {
   const userResponseToken = req.body.captchaResponse;
 
   // Google reCAPTCHA secret key
-  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-
+  // const secretKey = process.env.RECAPTCHA_SECRET_KEY;
+  const secretKey = '6Legtw0oAAAAAE8WsUlGGq-u7WAxXTbKXZQCtBRl'
 
   try {
     // Verify captcha response with Google
@@ -91,10 +91,12 @@ app.post('/validate-captcha', async (req, res) => {
       res.json({ success: true });
     } else {
       res.json({ success: false, errors: data["error-codes"] });
+
     }
   } catch (error) {
     console.error('Error:', error);
     res.status(500).json({ success: false, message: 'An error occurred' });
+    console.log('not working')
   }
 
 });
