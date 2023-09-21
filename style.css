@@ -30,7 +30,7 @@ header {
     height: fit-content;
     align-items: center;
     justify-content: space-between;
-    margin: 0 0.625rem 0;
+    margin: 0 0.825rem 0;
 }
 
 /* Positioning Captcha */
@@ -58,6 +58,7 @@ header {
 /* Heading 1 size */
 h1 {
     height: 2rem;
+    margin:0;
 }
 
 /* Tagline styling */
@@ -107,7 +108,7 @@ nav {
 /* Burger menu cursor style */
 #burger-menu {
     cursor: pointer;
-    margin: 0;
+    margin: 1rem 0;
 }
 
 /* Active path (likely SVG) styling */
