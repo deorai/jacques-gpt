@@ -77,8 +77,7 @@ app.post('/validate-captcha', async (req, res) => {
   const userResponseToken = req.body.captchaResponse;
 
   // Google reCAPTCHA secret key
-  // const secretKey = process.env.RECAPTCHA_SECRET_KEY;
-  const secretKey = '6Legtw0oAAAAAE8WsUlGGq-u7WAxXTbKXZQCtBRl'
+  const secretKey = process.env.RECAPTCHA_SECRET_KEY;
 
   try {
     // Verify captcha response with Google
@@ -89,6 +88,7 @@ app.post('/validate-captcha', async (req, res) => {
     // Check verification result
     if (data.success) {
       res.json({ success: true });
+      console.log('working')
     } else {
       res.json({ success: false, errors: data["error-codes"] });
 
