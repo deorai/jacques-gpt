@@ -30,6 +30,9 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(express.static('path/to/your/static/folder'));
+
+
 // Route handler for /chat POST requests 
 app.post('/chat', async (req, res) => {
 
