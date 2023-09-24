@@ -71,6 +71,7 @@ h1 {
 /* Dropdown menu styling */
 #dropdown-menu {
     right: 5px;
+    /* top: 100px */
     background-color: #fff;
     border: 0.063rem solid #ccc;
     width: 100px;
@@ -108,7 +109,7 @@ nav {
 /* Burger menu cursor style */
 #burger-menu {
     cursor: pointer;
-    margin: 1rem 0;
+    margin: 1rem 0 0;
 }
 
 /* Active path (likely SVG) styling */
