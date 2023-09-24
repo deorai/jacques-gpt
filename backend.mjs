@@ -32,7 +32,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(express.static('path/to/your/static/folder'));
+app.use(express.static('.'));
 
 
 // Route handler for /chat POST requests 
