@@ -4,6 +4,8 @@ import OpenAI from 'openai';
 import dotenv from 'dotenv';
 import axios from 'axios';
 
+
+
 // Load environment variables from .env file
 dotenv.config();
 
@@ -102,6 +104,10 @@ app.post('/validate-captcha', async (req, res) => {
     console.log('not working')
   }
 
+});
+
+app.get('/', (req, res) => {
+  res.send('Express app is working');
 });
 
 // Start Express server 
