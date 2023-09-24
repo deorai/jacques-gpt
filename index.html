@@ -124,10 +124,7 @@
 
          // Handle state changes 
          xhr.onreadystatechange = function () {
-
-            // Auto scrol
-            const chatBox = document.getElementById('chat-box');
-            chatBox.scrollTop = chatBox.scrollHeight;
+               
             // Process response if request is done
 
             if (xhr.readyState === 4 && xhr.status === 200) {
