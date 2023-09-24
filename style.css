@@ -34,15 +34,15 @@ header {
 }
 
 /* Positioning Captcha */
+/* Center reCAPTCHA on all screen sizes */
 #reCapatura {
     position: fixed;
-    top: 50%;
-    /* Center vertically */
-    right: 41%;
-    /* Almost center horizontally */
-    z-index: 2;
-    /* Above other elements */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center precisely */
+    z-index: 2; /* Above other elements */
 }
+
 
 /* Overlay settings for modals, etc. */
 .overlay {
