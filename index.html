@@ -125,10 +125,10 @@
          // Handle state changes 
          xhr.onreadystatechange = function () {
 
-            // Auto scroll
+            // Auto scrol
             chatBox.scrollTop = chatBox.scrollHeight;
             // Process response if request is done
-            
+
             if (xhr.readyState === 4 && xhr.status === 200) {
 
                // Parse JSON response 
