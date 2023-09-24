@@ -192,7 +192,7 @@
          const captchaResponse = grecaptcha.getResponse();
 
          // Send token to API for verification
-         fetch('http://localhost:4000/validate-captcha', {
+         fetch('https://jacques-gpt-e99d0c81d4e8.herokuapp.com/validate-captcha', {
             method: 'POST',
             headers: {
                'Content-Type': 'application/json',
