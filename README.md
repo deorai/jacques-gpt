@@ -8,9 +8,8 @@ JacquesGPT is a browser-based chatbot hosted on GitHub Pages. Engage in elegant 
 - Switch between French and English language modes.
 
 ## Usage
-Access JacquesGPT directly through the GitHub Pages link:  
-[JacquesGPT on GitHub Pages](#)
-
+Access JacquesGPT directly through the Heroku link:  
+[JacquesGPT on Heroku](https://jacques-gpt-e99d0c81d4e8.herokuapp.com/)
 
 
 
