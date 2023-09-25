@@ -15,3 +15,8 @@ JacquesGPT is a Node.js and Express-based chatbot hosted on Heroku, powered by O
 ## Usage
 Interact with JacquesGPT via the Heroku link:  
 [JacquesGPT on Heroku](https://jacques-gpt-e99d0c81d4e8.herokuapp.com/)
+
+## License
+
+This project is licensed under the GNU Affero General Public License v3.0 (AGPL-3.0). This means while you can use and modify the code, any changes must also be open-sourced under the same license. Unauthorized commercial usage is not allowed. For more details, see the LICENSE file included with this project.
+
