@@ -1,7 +1,7 @@
 # JacquesGPT: A Sophisticated French Chatbot
 
 <div align="center">
-  ![Avatar head](media/avatar-head.png)
+<img src="media/avatar-head.png" alt="Avatar head" width="200"/>
 </div>
 
 ## Introduction
