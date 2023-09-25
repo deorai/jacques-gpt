@@ -30,7 +30,7 @@ header {
     height: fit-content;
     align-items: center;
     justify-content: space-between;
-    margin: 0 0.825rem 0;
+    margin: 1rem 1.5rem 0;
 }
 
 /* Positioning Captcha */
@@ -64,7 +64,7 @@ h1 {
 /* Tagline styling */
 #tag-line {
     display: block;
-    margin: 0 0.625rem;
+    margin: 0 1.5rem;
     font-style: italic;
 }
 
@@ -109,7 +109,7 @@ nav {
 /* Burger menu cursor style */
 #burger-menu {
     cursor: pointer;
-    margin: 1rem 0 0;
+    margin: 0 0 0;
 }
 
 /* Active path (likely SVG) styling */
@@ -208,6 +208,7 @@ input::placeholder {
 /* Main content layout */
 main {
     position: relative;
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -221,6 +222,8 @@ main {
     font-size: 1.25rem;
     position: relative;
     line-height: 1.5;
+    padding-bottom: 10rem;
+
 
 }
 
@@ -255,6 +258,11 @@ footer p {
         font-size: 1.5rem;
     }
 
+    header {
+    
+        margin: 0.5rem 0.5rem 0;
+    }
+
     #tag-line {
         display: none;
     }
@@ -265,6 +273,11 @@ footer p {
 
     #chat-box {
         width: 80%;
+    }
+
+    #chat-form {
+        bottom: 1.5%;
+       
     }
 
     /* About page */
@@ -307,6 +320,8 @@ footer p {
     footer {
         display: none;
     }
+
+    
 }
 
 
