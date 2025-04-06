@@ -13,8 +13,7 @@ JacquesGPT is a Node.js and Express-based chatbot hosted on Heroku, powered by O
 - Built using Node.js, Express, and OpenAI's Node library.
 
 ## Usage
-Interact with JacquesGPT via the Heroku link:  
-[JacquesGPT on Heroku](https://jacques-gpt-e99d0c81d4e8.herokuapp.com/)
+The public version is currently unavailable but feel free to clone and run on your local machine!
 
 ## License
 
